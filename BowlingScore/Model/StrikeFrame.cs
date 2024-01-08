@@ -2,6 +2,9 @@
 
 namespace BowlingScore.Model
 {
+    /// <summary>
+    /// Frame for Strike.
+    /// </summary>
     public class StrikeFrame : Frame
     {
         public StrikeFrame(ArrayList throws) : base(throws)

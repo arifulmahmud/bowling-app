@@ -2,6 +2,9 @@
 
 namespace BowlingScore.Model
 {
+    /// <summary>
+    /// Frame for Spare.
+    /// </summary>
     public class SpareFrame : Frame
     {
         public SpareFrame(ArrayList throws, int firstThrow, int secondThrow) : base(throws)

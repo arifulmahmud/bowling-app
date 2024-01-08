@@ -18,83 +18,77 @@ namespace BowlingScoreTest
         }
 
         [Test]
-        public void Hookup()
-        {
-            Assert.IsTrue(true);
-        }
-
-        [Test]
-        public void GutterBalls()
+        public void AllLostBalls()
         {
             ManyOpenFrames(10, 0, 0);
-            Assert.AreEqual(0, game.Score());
+            Assert.That(game.Score(), Is.EqualTo(0));
         }
 
         [Test]
-        public void Threes()
+        public void ThreesScore()
         {
             ManyOpenFrames(10, 3, 3);
-            Assert.AreEqual(60, game.Score());
+            Assert.That(game.Score(), Is.EqualTo(60));
         }
 
         [Test]
-        public void Spare()
+        public void GameWithSpareAndGutters()
         {
             game.Spare(4, 6);
             game.OpenFrame(3, 5);
             ManyOpenFrames(8, 0, 0);
-            Assert.AreEqual(21, game.Score());
+            Assert.That(game.Score(), Is.EqualTo(21));
         }
 
         [Test]
-        public void Spare2()
+        public void GameWithSpares()
         {
             game.Spare(4, 6);
             game.OpenFrame(5, 3);
             ManyOpenFrames(8, 0, 0);
-            Assert.AreEqual(23, game.Score());
+            Assert.That(game.Score(), Is.EqualTo(23));
         }
 
         [Test]
-        public void Strike()
+        public void GameWithStrikes()
         {
             game.Strike();
             game.OpenFrame(5, 3);
             ManyOpenFrames(8, 0, 0);
-            Assert.AreEqual(26, game.Score());
+            Assert.That(game.Score(), Is.EqualTo(26));
         }
 
         [Test]
-        public void StrikeFinalFrame()
+        public void GameWithStrikeInFinalFrame()
         {
             ManyOpenFrames(9, 0, 0);
             game.Strike();
             game.BonusRoll(5);
             game.BonusRoll(3);
-            Assert.AreEqual(18, game.Score()); // note that this is different from test Strike()
+            Assert.That(game.Score(), Is.EqualTo(18));
         }
 
         [Test]
-        public void SpareFinalFrame()
+        public void GameWithSpareFinalFrame()
         {
             ManyOpenFrames(9, 0, 0);
-            game.Spare(4, 6);
+            game.Spare(3, 7);
             game.BonusRoll(5);
-            Assert.AreEqual(15, game.Score());
+            Assert.That(game.Score(), Is.EqualTo(15));
         }
 
         [Test]
-        public void Perfect()
+        public void GameWithAllStrikes()
         {
             for (int i = 0; i < 10; i++)
                 game.Strike();
             game.BonusRoll(10);
             game.BonusRoll(10);
-            Assert.AreEqual(300, game.Score());
+            Assert.That(game.Score(), Is.EqualTo(300));
         }
 
         [Test]
-        public void Alternating()
+        public void GameWithStrikeAndSpare()
         {
             for (int i = 0; i < 5; i++)
             {
@@ -102,7 +96,7 @@ namespace BowlingScoreTest
                 game.Spare(4, 6);
             }
             game.BonusRoll(10);
-            Assert.AreEqual(200, game.Score());
+            Assert.That(game.Score(), Is.EqualTo(200));
         }
 
         // test helper
