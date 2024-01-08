@@ -1,8 +1,6 @@
-﻿using System.Runtime.Serialization;
-
-namespace BowlingScore
+﻿namespace BowlingScore
 {
-    internal class Program
+    public class Program
     {
         readonly BowlingGame _game;
         private const int TotalPinCount = 10;
