@@ -88,6 +88,22 @@ namespace BowlingScoreTest
         }
 
         [Test]
+        public void GameWithNineAndMiss()
+        {
+            ManyOpenFrames(10, 9, 0);
+            Assert.That(game.Score(), Is.EqualTo(90));
+        }
+
+        [Test]
+        public void GameWithSparesAndBonus()
+        {
+            for (int i = 0; i < 10; i++)
+                game.Spare(5,5);
+            game.BonusRoll(5);
+            Assert.That(game.Score(), Is.EqualTo(150));
+        }
+
+        [Test]
         public void GameWithStrikeAndSpare()
         {
             for (int i = 0; i < 5; i++)
@@ -99,7 +115,7 @@ namespace BowlingScoreTest
             Assert.That(game.Score(), Is.EqualTo(200));
         }
 
-        // test helper
+        // test helper with number of rolls and scores
         private void ManyOpenFrames(int count, int firstThrow, int secondThrow)
         {
             for (int frameNumber = 0; frameNumber < count; frameNumber++)
